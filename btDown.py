@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
-#pylint: disable=C0103,C0111,C0325,E0001
 
 '''btDown.py - Download resource for HTTP/HTTPS/FTP/Thunder/Magnet/BT
 
@@ -98,7 +97,7 @@ class BtDown(object):
         base_file = os.path.basename(file)
         if(percent > 100):
             percent = 100
-        message = '\r  Downloading %s ...... %02.f%%' % (base_file, percent)
+        message = '\r  Downloading %s ...... %2.f%%' % (base_file, percent)
         print(message, end='')
         return
 
@@ -122,6 +121,7 @@ class BtDown(object):
                 return
             percent = 100.0 * blocknum * blocksize / totalsize
             self._showDownloadProgress(dest_file, percent)
+        url = parse.quote(url, safe=':/@')
         request.urlretrieve(url, dest_file, _report)
 
     def download(self):
